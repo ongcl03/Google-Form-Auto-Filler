@@ -5,7 +5,7 @@ This repository contains two methods for automating the filling of Google Forms:
 ## Method 1: Using Python Requests 🐍
 
 ### Description
-This method utilizes the `requests` library in Python to submit data to a Google Form.
+This method utilizes the `requests` library in Python to submit data to a Google Form. It is faster compared to Method 2 (Selenium). For even faster performance, you can try the multithreading requests version. It utilizes multiple threads to send requests simultaneously, maximizing the throughput. However, be cautious as it may overload the server or trigger anti-spam measures if not used responsibly.
 
 
 ## Method 2: Using Selenium ⚙️
@@ -31,6 +31,10 @@ This method employs `Selenium`, a web automation framework, to interact with and
 # Tutorial and Demo 🎥
 
 - [Demo Video of Selenium Method](https://www.youtube.com/watch?v=Hkuh5pFczi4)
+
+# Google Form Dashboard Response
+
+<img src="https://github.com/ongcl03/Google-Form-Auto-Filler/assets/75270770/3f4ac342-df57-4755-958e-43ef42d4a183.png" alt="Google Form Dashboard Response" width="450">
 
 
 # Contributing 🤝
