@@ -41,9 +41,8 @@ import random
 
 
 
-PATH = "C:\Program Files (x86)\chromedriver.exe"
 
-driver = webdriver.Chrome(PATH)
+driver = webdriver.Chrome()
 # Insert your google form link below
 driver.get("https://docs.google.com/forms/d/e/1FAIpQLSeNe5755EkIYbsXLb3peyFT0hmnxLVtyjJmb8IqnbK9DB4gcQ/viewform?usp=sf_link")
 time.sleep(2)
