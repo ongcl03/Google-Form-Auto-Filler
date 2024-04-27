@@ -1,8 +1,8 @@
 import requests
-import json
 import time
 import threading
-
+import random
+import urllib.parse
 
 # THREADING:
 
@@ -21,11 +21,7 @@ import threading
 start_time = time.time()
 number_of_forms = 50
 
-
-def fill(url, form_data):
-    print(requests.post(url, data = form_data))                     # send data
-
-
+            
 url = "https://docs.google.com/forms/u/0/d/e/1FAIpQLScVQYmVsplrGh7rdFXxCuKp5cZwCTLB2rOhHYni240a3g4BWg/formResponse"
 
 form_data = {
@@ -34,6 +30,51 @@ form_data = {
     "entry.841756088": "acac",
     "pageHistory": "0",
     }
+
+# List of options of checkbox type (use this only for checkbox type and more than 1 answers needed)
+options = [
+    "Option 1",
+    "Option 2",
+    "Option 3",
+    "Option 4",
+]
+
+
+# Create random payload based on the options
+def create_random_payload(options):
+    # Randomly select 2 or 3 options
+    num_options = random.randint(2, 3)
+    selected_options = random.sample(options, num_options)
+
+    # Create the payload
+    payload_parts = []
+    for option in selected_options:
+        payload_parts.append(f"entry.539945300={urllib.parse.quote_plus(option)}")
+
+    payload = "&".join(payload_parts)
+    payload += "&pageHistory=0"     # need to check how many pages
+
+    # Example payload （can view from chrome dev tools payload)
+    # payload = "entry.1740519971=Option+1&entry.1740519971=Option+2&entry.1740519971=Option+3&entry.1740519971=Option+4&pageHistory=0"
+    return payload
+
+
+# CheckBox way (use payload data as post requests data)
+def fill_with_payload(url, form_data):
+    headers = {"Content-Type": "application/x-www-form-urlencoded"}
+    print(requests.post(url, headers=headers, data = form_data))                     # send data
+
+
+# Generate a random payload
+random_payload = create_random_payload(options)
+# fill_with_payload(url, random_payload)
+
+
+
+# Normal way (use python dictornary as post requests data)
+def fill(url, form_data):
+    print(requests.post(url, data = form_data))          # send data
+
 
 def do_request():
     fill(url, form_data)
